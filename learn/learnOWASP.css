@@ -1,0 +1,260 @@
+/* =========================
+   TRYHACKME LOGIN CLONE CSS
+   for optimized classes (login-*)
+   ========================= */
+
+/* Optional: nếu bạn chưa import font ở globals.css */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --nav-bg: #212c42;
+  --nav-text: #9096a1;
+  --nav-text-hover: #f4f7ff;
+
+  --lime: #a3ea2a;
+
+  --page-bg: #f6f7fb;
+  --card-bg: #ffffff;
+  --text: #0b1220;
+  --muted: #52607a;
+
+  --border: #cbd5e1;
+  --border-soft: #e6eaf2;
+
+  /* === measured from your screenshot === */
+  --nav-h: 89px;
+  --card-w: 492px;
+  --card-pad-x: 33px;
+  --radius-card: 6px;
+  --radius-input: 4px;
+
+  --field-h: 44px;
+  --btn-h: 44px;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
+  color: var(--text);
+  background: var(--page-bg);
+}
+
+/* =========================
+   NAVBAR
+   ========================= */
+.login-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  z-index: 9999;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.login-header__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  padding: 0 28px;
+}
+
+/* logo */
+.login-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.login-brand__logo {
+  height: 44px;
+  width: auto;
+  display: block;
+  padding: 0 100px 0 0;
+}
+
+/* menu */
+.login-nav {
+  display: flex;
+  align-items: flex-end;
+  gap: 34px;
+}
+
+.login-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+
+  color: var(--nav-text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+
+  height: calc(var(--nav-h) - 16px);
+  padding: 6px 6px;
+  user-select: none;
+}
+
+.login-nav__icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+  opacity: 0.85;
+}
+
+.login-nav__item:hover {
+  color: var(--nav-text-hover);
+}
+.login-nav__item:hover .login-nav__icon {
+  opacity: 1;
+}
+
+.login-header__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.login-header__icon-btn {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.login-header__icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  opacity: 0.9;
+}
+
+/* buttons (top right) */
+.login-btn {
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 38px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.login-btn--outline {
+  color: #f4f7ff;
+  background: transparent;
+  border: 2px solid var(--lime);
+}
+
+.login-btn--solid {
+  color: #0f1422;
+  background: var(--lime);
+  border: 2px solid var(--lime);
+}
+
+.login-btn--outline:hover {
+  filter: brightness(1.05);
+}
+.login-btn--solid:hover {
+  filter: brightness(0.95);
+}
+
+/* =========================
+   USER AVATAR 
+   ========================= */
+
+.login-user {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  margin-left: 8px; /* khoảng cách với icon trước đó */
+}
+
+/* vòng tròn chữ cái */
+.login-user__avatar {
+  width: 44px; /* bạn có thể đổi 42/44 tuỳ khớp */
+  height: 44px;
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  /* viền cam + nền cam đậm */
+  border: 3px solid #ff8a00;
+  background: #c55b00; /* nền cam tối */
+  color: #111827;
+
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0.2px;
+}
+
+/* hover giống web: sáng hơn nhẹ */
+.login-user:hover .login-user__avatar {
+  filter: brightness(1.05);
+}
+
+/* focus (keyboard) */
+.login-user:focus-visible .login-user__avatar {
+  outline: 3px solid rgba(163, 234, 42, 0.45);
+  outline-offset: 3px;
+}
+
+.login-user__img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+} /* =========================================================
+   A-owasp-lessons.css  (Shared for A01 → A10)
+   Goal: match the sample UI (Udemy-like)
+   - Clean white layout
+   - "What you'll learn" bordered box (2 columns)
+   - Topic chips (pill)
+   - "This course includes" icons aligned on same row
+   - Accordion sections with triangle caret (no "|" look)
+   - Lecture rows: title left, preview+time right (same line)
+   ========================================================= */
+
+/* =========================================================
+   A-owasp-lessons.css (Shared A01 → A10)
+   ========================================================= */
+
+/* =========================================================
+   learn.css (shared for A01 → A10)
+   Matches your CURRENT HTML structure/classes.
+   Fixes:
+   1) Includes icons aligned with text (same row)
+   2) No weird "|" at section header (caret uses triangles)
+   3) Lecture rows: Title left, (Preview + Time) right on SAME line
+   ========================================================= */
